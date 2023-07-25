@@ -1,0 +1,17 @@
+create database paokentin;
+use paokentin;
+
+create table pao(
+id int(5) auto_increment primary key,
+tipo_pao varchar (30),
+tempo_preparo bigint,
+descricao varchar (200)
+);
+
+create table fornada(
+id int(5) auto_increment primary key,
+pao_id int (5),
+horario_inicio timestamp,
+pronta boolean default false,
+constraint fk_tipo_pao foreign key(pao_id) references pao(id)
+);
