@@ -30,9 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             exibirMensagemSucesso("Pão cadastrado com sucesso!");
-            window.location.href = "telaDonoPadaria.html"; 
-        } catch (error) {
-            console.error(error);
+
+            setTimeout(() => {
+                 window.location.href = "telaDonoPadaria.html"; 
+            }, 2000);
+           } catch (error) {
+            //console.error(error);
             exibirMensagemErro("Erro ao cadastrar o pão.");
         }
     }
@@ -40,12 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function exibirMensagemSucesso(mensagem) {
         const mensagemDiv = document.getElementById("mensagem");
         mensagemDiv.textContent = mensagem;
+        mensagemDiv.classList.remove("mensagem-erro");
+        mensagemDiv.classList.add("mensagem-sucesso");
         mensagemDiv.style.color = "green"; 
     }
 
     function exibirMensagemErro(mensagem) {
         const mensagemDiv = document.getElementById("mensagem");
         mensagemDiv.textContent = mensagem;
+        mensagemDiv.classList.remove("mensagem-sucesso");
+        mensagemDiv.classList.add("mensagem-erro");
         mensagemDiv.style.color = "red"; 
     }
 
