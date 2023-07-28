@@ -106,26 +106,4 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
         return fornadas;
     }
 
-    public Fornada getLastProntaFornada() throws SQLException {
-        String sql = "SELECT * FROM fornada WHERE pronta = 1 ORDER BY horario_inicio DESC LIMIT 1";
-
-        PreparedStatement pstm = ConnectionManager.getCurrentConnection().prepareStatement(sql);
-        ResultSet result = pstm.executeQuery();
-
-        if (result.next()) {
-            Fornada fornada = new Fornada();
-            fornada.setId(result.getInt("id"));
-
-            PaoRepository paoRepository = new PaoRepository();
-            Pao pao = paoRepository.read(result.getInt("pao_id"));
-            fornada.setPao(pao);
-
-            fornada.setHoraInicio(result.getTimestamp("horario_inicio"));
-            fornada.setPronta(result.getBoolean("pronta"));
-
-            return fornada;
-        }
-
-        return null;
-    }
 }
